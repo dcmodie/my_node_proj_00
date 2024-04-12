@@ -14,23 +14,13 @@ db.connect((err) => {
   }
   console.log('MySql Connected');
 });
-//const origin = ctx.get('origin');
-//check if you want to allow this origin
-//if you want to allow it,
-//ctx.set('Access-Control-Allow-Origin', origin);
-//else do not set the header or set it something else
-//ctx.set('Access-Control-Allow-Origin', 'localhost.com');
+
 const app = express();
 app.use(cors());
 // handle urlencoded data
 app.use(express.urlencoded({ extended: true }));
 // handle json data coming from requests mainly post
 app.use(express.json());
-// var corsOptions = {
-//   origin: 'http://localhost.com',
-//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
-
 app.get('/persons/', (req, res) => {
   let sql = 'SELECT * FROM PERSONS';
   db.query(sql, (err, result) => {
